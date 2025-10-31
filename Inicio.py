@@ -1,7 +1,48 @@
+import os
 import streamlit as st
 import paho.mqtt.client as mqtt
 import json
 import time
+
+# Estilo visual con colores oceánicos
+st.markdown("""
+    <style>
+        body {
+            background-color: #003366;  /* Azul océano profundo */
+            color: #ffffff;  /* Texto blanco */
+        }
+        .stTitle {
+            color: #80deea;  /* Azul océano claro para el título */
+        }
+        .stSubheader {
+            color: #00bcd4;  /* Azul turquesa para los subtítulos */
+        }
+        .stButton>button {
+            background-color: #00796b;  /* Botones de color verde océano */
+            color: white;  /* Texto blanco en los botones */
+        }
+        .stImage>div>img {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .stSidebar {
+            background-color: #80deea;  /* Azul claro para la barra lateral */
+        }
+        .stTextInput>div>div>input {
+            background-color: #4db6ac;  /* Fondo de los campos de texto en verde suave */
+        }
+        .stTextArea>div>div>textarea {
+            background-color: #4db6ac;  /* Fondo del área de texto */
+        }
+        .stMarkdown {
+            color: #ffffff;  /* Texto de Markdown en blanco */
+        }
+        /* Barra lateral con texto en azul oscuro */
+        .stSidebar .stText {
+            color: #003366; /* Azul oscuro para el texto en la barra lateral */
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # Configuración de la página
 st.set_page_config(
@@ -65,7 +106,7 @@ with st.sidebar:
                               help='Identificador único para este cliente')
 
 # Título
-st.title('📡 Lector de Sensor MQTT')
+st.title('📡 **Lector de Sensor MQTT** 🌊')
 
 # Información al inicio
 with st.expander('ℹ️ Información', expanded=False):
@@ -95,15 +136,15 @@ if st.button('🔄 Obtener Datos del Sensor', use_container_width=True):
 # Mostrar resultados
 if st.session_state.sensor_data:
     st.divider()
-    st.subheader('📊 Datos Recibidos')
+    st.subheader('📊 **Datos Recibidos**')
     
     data = st.session_state.sensor_data
     
     # Verificar si hay error
     if isinstance(data, dict) and 'error' in data:
-        st.error(f"❌ Error de conexión: {data['error']}")
+        st.error(f"❌ **Error de conexión**: {data['error']}")
     else:
-        st.success('✅ Datos recibidos correctamente')
+        st.success('✅ **Datos recibidos correctamente**')
         
         # Mostrar datos en formato JSON
         if isinstance(data, dict):
