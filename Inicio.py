@@ -4,6 +4,13 @@ import paho.mqtt.client as mqtt
 import json
 import time
 
+# Configuración de la página (debe ir al principio)
+st.set_page_config(
+    page_title="Lector de Sensor MQTT",
+    page_icon="📡",
+    layout="centered"
+)
+
 # Estilo visual con colores oceánicos
 st.markdown("""
     <style>
@@ -37,19 +44,11 @@ st.markdown("""
         .stMarkdown {
             color: #ffffff;  /* Texto de Markdown en blanco */
         }
-        /* Barra lateral con texto en azul oscuro */
         .stSidebar .stText {
             color: #003366; /* Azul oscuro para el texto en la barra lateral */
         }
     </style>
 """, unsafe_allow_html=True)
-
-# Configuración de la página
-st.set_page_config(
-    page_title="Lector de Sensor MQTT",
-    page_icon="📡",
-    layout="centered"
-)
 
 # Variables de estado
 if 'sensor_data' not in st.session_state:
